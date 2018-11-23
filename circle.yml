@@ -1,0 +1,27 @@
+machine:
+  node:
+    version: 6.11.0
+  npm:
+    version: 3.10.10
+
+dependencies:
+  pre:
+    - sudo apt-get update
+    - sudo apt-get install --fix-missing python-dev
+    - sudo pip2 install -U pip
+    - sudo pip2 install paramiko==1.16
+    - sudo pip2 install ansible==2.0.2.0
+
+test:
+  override:
+    - echo "test"
+
+deployment:
+  staging:
+    branch: develop
+    commands:
+      - make stage_deploy
+  production:
+    branch: master
+    commands:
+      - make deploy
